@@ -4,7 +4,9 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  uname -a
+  mkdir -p "$shome/vendor" "$shome/bin"
+  git clone git@github.com:Neilpang/acme.sh.git "$shome/vendor/acme-${ACME_SH_VERSION}" || true
+  ln -nfs "../vendor/acme-${ACME_SH_VERSION}/acme.sh" "$shome/bin/"
 }
 
 main "$@"
