@@ -4,7 +4,7 @@ function version {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local ver_acme="0.0.1"
+  local ver_acme="$(acme.sh --version 2>/dev/null | grep ^v | sed 's#^v##' || true)"
   jq -n --arg acme "$ver_acme" '{acme: $acme}'
 }
 

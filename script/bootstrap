@@ -6,6 +6,7 @@ function main {
 
   mkdir -p "$shome/vendor" "$shome/bin"
   git clone git@github.com:Neilpang/acme.sh.git "$shome/vendor/acme-${ACME_SH_VERSION}" || true
+  (cd "$shome/vendor/acme-${ACME_SH_VERSION}" && git reset --hard "${ACME_SH_VERSION}")
   ln -nfs "../vendor/acme-${ACME_SH_VERSION}/acme.sh" "$shome/bin/"
 }
 
