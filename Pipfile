@@ -7,7 +7,7 @@ name = "pypi"
 
 [packages]
 
-dns-lexicon = "*"
+dns-lexicon = {extras = ["route53"]}
 
 
 [dev-packages]
