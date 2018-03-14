@@ -4,6 +4,11 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
+  block compile pipenv "$@"
+  local pth_lexicon="$(pipenv run which lexicon)"
+  mkdir -p "$shome/bin"
+  ln -nfs "$pth_lexicon" "$shome/bin/"
+
   mkdir -p "$shome/vendor" "$shome/bin"
   git clone git@github.com:Neilpang/acme.sh.git "$shome/vendor/acme-${ACME_SH_VERSION}" || true
   (cd "$shome/vendor/acme-${ACME_SH_VERSION}" && git reset --hard "${ACME_SH_VERSION}")
